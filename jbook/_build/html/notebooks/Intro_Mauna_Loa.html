@@ -1,0 +1,1374 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>PyRATES: Introduction to Timeseries &#8212; PyRATES practicums with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/Intro_Mauna_Loa';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="PyRATES: Signal Processing" href="signal_processing.html" />
+    <link rel="prev" title="PyRATES practicums" href="../intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/Pyrateslogo.png" class="logo__image only-light" alt="PyRATES practicums with Python - Home"/>
+    <script>document.write(`<img src="../_static/Pyrateslogo.png" class="logo__image only-dark" alt="PyRATES practicums with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    PyRATES practicums
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">PyRATES: Introduction to Timeseries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="signal_processing.html">PyRATES: Signal Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Association.html">PyRATES: Measures of association</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Spectral_Analysis_Rio_Grande.html">PyRATES: Spectral Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wavelets%26coherence.html">PyRATES: Wavelets and Coherency</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/LinkedEarth/PyRATES_practicums_py/main?urlpath=tree/jbook/notebooks/Intro_Mauna_Loa.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/LinkedEarth/PyRATES_practicums_py" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/LinkedEarth/PyRATES_practicums_py/issues/new?title=Issue%20on%20page%20%2Fnotebooks/Intro_Mauna_Loa.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/Intro_Mauna_Loa.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>PyRATES: Introduction to Timeseries</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background">Background</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-wrangling">Data Wrangling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question">Question</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Question</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Question</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trend-extraction">2. Trend Extraction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-trend-model">2.1 Linear trend model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quadratic-fit">2.2. Quadratic fit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-periodic-components">3. Adding Periodic components</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seasonal-trend-decomposition-using-loess-stl">Seasonal-Trend decomposition using LOESS (STL)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forecasting">4. Forecasting</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <img src='http://linked.earth/FROGS/images/Pyrateslogo.jpg' width="400">
+<section class="tex2jax_ignore mathjax_ignore" id="pyrates-introduction-to-timeseries">
+<h1>PyRATES: Introduction to Timeseries<a class="headerlink" href="#pyrates-introduction-to-timeseries" title="Link to this heading">#</a></h1>
+<p>Content: Data Wrangling, Trend estimation</p>
+<section id="background">
+<h2>Background<a class="headerlink" href="#background" title="Link to this heading">#</a></h2>
+<p>(excerpt from book, Chap 7 here)</p>
+<p>To see these concepts in action, let us consider the <a class="reference external" href="https://www.acs.org/education/whatischemistry/landmarks/keeling-curve.html">iconic</a> Mauna Loa Observatory <span class="math notranslate nohighlight">\(CO_2\)</span> measurements. The data are available <a class="reference external" href="https://scrippsco2.ucsd.edu/data/atmospheric_co2/mlo.html">here</a>. In addition to the usual scientific Python stack, we will be using <a class="reference external" href="https://pandas.pydata.org/">pandas</a> and <a class="reference external" href="http://www.statsmodels.org/stable/index.html">statsmodels</a>. Let us load these packages:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-wrangling">
+<h2>Data Wrangling<a class="headerlink" href="#data-wrangling" title="Link to this heading">#</a></h2>
+<p>We use <a class="reference external" href="https://pandas.pydata.org/">pandas</a> to load the data, which are in csv. Pandas can load directly over the network, so all we need to give it is a URL of the file (here, <a class="reference external" href="https://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/in_situ_co2/monthly/monthly_in_situ_co2_mlo.csv">https://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/in_situ_co2/monthly/monthly_in_situ_co2_mlo.csv</a>).
+Let’s try it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/in_situ_co2/monthly/monthly_in_situ_co2_mlo.csv&#39;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> <span class="c1"># this will show the first few rows of the dataset</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ParserError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/in_situ_co2/monthly/monthly_in_situ_co2_mlo.csv&#39;</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> <span class="c1"># this will show the first few rows of the dataset</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/jbook/lib/python3.12/site-packages/pandas/io/parsers/readers.py:948,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
+<span class="g g-Whitespace">    </span><span class="mi">935</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">936</span>     <span class="n">dialect</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">937</span>     <span class="n">delimiter</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">944</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">945</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">946</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">948</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/jbook/lib/python3.12/site-packages/pandas/io/parsers/readers.py:617,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">614</span>     <span class="k">return</span> <span class="n">parser</span>
+<span class="g g-Whitespace">    </span><span class="mi">616</span> <span class="k">with</span> <span class="n">parser</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">617</span>     <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">nrows</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/jbook/lib/python3.12/site-packages/pandas/io/parsers/readers.py:1748,</span> in <span class="ni">TextFileReader.read</span><span class="nt">(self, nrows)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1741</span> <span class="n">nrows</span> <span class="o">=</span> <span class="n">validate_integer</span><span class="p">(</span><span class="s2">&quot;nrows&quot;</span><span class="p">,</span> <span class="n">nrows</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1742</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1743</span>     <span class="c1"># error: &quot;ParserBase&quot; has no attribute &quot;read&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1744</span>     <span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1745</span>         <span class="n">index</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1746</span>         <span class="n">columns</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1747</span>         <span class="n">col_dict</span><span class="p">,</span>
+<span class="ne">-&gt; </span><span class="mi">1748</span>     <span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">read</span><span class="p">(</span>  <span class="c1"># type: ignore[attr-defined]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1749</span>         <span class="n">nrows</span>
+<span class="g g-Whitespace">   </span><span class="mi">1750</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1751</span> <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1752</span>     <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/jbook/lib/python3.12/site-packages/pandas/io/parsers/c_parser_wrapper.py:234,</span> in <span class="ni">CParserWrapper.read</span><span class="nt">(self, nrows)</span>
+<span class="g g-Whitespace">    </span><span class="mi">232</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">233</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">low_memory</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">234</span>         <span class="n">chunks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reader</span><span class="o">.</span><span class="n">read_low_memory</span><span class="p">(</span><span class="n">nrows</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">235</span>         <span class="c1"># destructive to chunks</span>
+<span class="g g-Whitespace">    </span><span class="mi">236</span>         <span class="n">data</span> <span class="o">=</span> <span class="n">_concatenate_chunks</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span>
+
+<span class="nn">File parsers.pyx:843,</span> in <span class="ni">pandas._libs.parsers.TextReader.read_low_memory</span><span class="nt">()</span>
+
+<span class="nn">File parsers.pyx:904,</span> in <span class="ni">pandas._libs.parsers.TextReader._read_rows</span><span class="nt">()</span>
+
+<span class="nn">File parsers.pyx:879,</span> in <span class="ni">pandas._libs.parsers.TextReader._tokenize_rows</span><span class="nt">()</span>
+
+<span class="nn">File parsers.pyx:890,</span> in <span class="ni">pandas._libs.parsers.TextReader._check_tokenize_status</span><span class="nt">()</span>
+
+<span class="nn">File parsers.pyx:2058,</span> in <span class="ni">pandas._libs.parsers.raise_parser_error</span><span class="nt">()</span>
+
+<span class="ne">ParserError</span>: Error tokenizing data. C error: Expected 1 fields in line 35, saw 4
+</pre></div>
+</div>
+</div>
+</div>
+<section id="question">
+<h3>Question<a class="headerlink" href="#question" title="Link to this heading">#</a></h3>
+<p>Q: What went wrong? To debug, you’ll have to download the file and look at it (do it). What do you see that a machine might have problems with?</p>
+<p>Hint: <a class="reference external" href="https://www.askpython.com/python-modules/pandas/pandas-read-csv-with-headers">https://www.askpython.com/python-modules/pandas/pandas-read-csv-with-headers</a></p>
+<p>A: This csv file has a long header. pandas needs to be told how many lines to skip.</p>
+<p>Another issue is that the name of the columns for the dataset span two rows, which <code class="docutils literal notranslate"><span class="pre">pandas</span></code> won’t be able to deal with on its own. So we need to give it 2 pieces of information:</p>
+<ol class="arabic simple">
+<li><p>How long the header is</p></li>
+<li><p>What the column names are (which we can lift from the header manually)</p></li>
+</ol>
+<p>We do this by passing two extra arguments to <code class="docutils literal notranslate"><span class="pre">read_csv()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Yr&#39;</span><span class="p">,</span><span class="s1">&#39;Mn&#39;</span><span class="p">,</span><span class="s1">&#39;XLDate&#39;</span><span class="p">,</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span><span class="s1">&#39;CO2&#39;</span><span class="p">,</span><span class="s1">&#39;seasonally adjusted&#39;</span><span class="p">,</span><span class="s1">&#39;fit&#39;</span><span class="p">,</span><span class="s1">&#39;seasonally adjusted fit&#39;</span><span class="p">,</span><span class="s1">&#39;CO2 filled&#39;</span><span class="p">,</span>	<span class="s1">&#39;seasonally adjusted filled&#39;</span><span class="p">,</span><span class="s1">&#39;Sta&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">cols</span><span class="p">)</span> <span class="c1"># read in the data</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> <span class="c1"># display the top</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Yr</th>
+      <th>Mn</th>
+      <th>XLDate</th>
+      <th>Date</th>
+      <th>CO2</th>
+      <th>seasonally adjusted</th>
+      <th>fit</th>
+      <th>seasonally adjusted fit</th>
+      <th>CO2 filled</th>
+      <th>seasonally adjusted filled</th>
+      <th>Sta</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1958</td>
+      <td>2</td>
+      <td>21231</td>
+      <td>1958.1260</td>
+      <td>-99.99</td>
+      <td>-99.99</td>
+      <td>-99.99</td>
+      <td>-99.99</td>
+      <td>-99.99</td>
+      <td>-99.99</td>
+      <td>MLO</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1958</td>
+      <td>3</td>
+      <td>21259</td>
+      <td>1958.2027</td>
+      <td>315.71</td>
+      <td>314.44</td>
+      <td>316.20</td>
+      <td>314.91</td>
+      <td>315.71</td>
+      <td>314.44</td>
+      <td>MLO</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1958</td>
+      <td>4</td>
+      <td>21290</td>
+      <td>1958.2877</td>
+      <td>317.45</td>
+      <td>315.16</td>
+      <td>317.30</td>
+      <td>314.99</td>
+      <td>317.45</td>
+      <td>315.16</td>
+      <td>MLO</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1958</td>
+      <td>5</td>
+      <td>21320</td>
+      <td>1958.3699</td>
+      <td>317.51</td>
+      <td>314.69</td>
+      <td>317.89</td>
+      <td>315.07</td>
+      <td>317.51</td>
+      <td>314.69</td>
+      <td>MLO</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1958</td>
+      <td>6</td>
+      <td>21351</td>
+      <td>1958.4548</td>
+      <td>-99.99</td>
+      <td>-99.99</td>
+      <td>317.27</td>
+      <td>315.15</td>
+      <td>317.27</td>
+      <td>315.15</td>
+      <td>MLO</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>By default, <code class="docutils literal notranslate"><span class="pre">pandas</span></code> indexed the rows by their number (starting at 0 as it’s Python). Let’s extract the actual dates, convert them to a usable format, and re-index the dataframe:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">date</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;XLDate&#39;</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;1899-12-30&#39;</span><span class="p">)</span> <span class="c1"># convert from Excel&#39;s weird standard to something human-readable</span>
+<span class="n">date</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">=</span><span class="n">date</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Yr</th>
+      <th>Mn</th>
+      <th>XLDate</th>
+      <th>Date</th>
+      <th>CO2</th>
+      <th>seasonally adjusted</th>
+      <th>fit</th>
+      <th>seasonally adjusted fit</th>
+      <th>CO2 filled</th>
+      <th>seasonally adjusted filled</th>
+      <th>Sta</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1958-02-15</th>
+      <td>1958</td>
+      <td>2</td>
+      <td>21231</td>
+      <td>1958.1260</td>
+      <td>-99.99</td>
+      <td>-99.99</td>
+      <td>-99.99</td>
+      <td>-99.99</td>
+      <td>-99.99</td>
+      <td>-99.99</td>
+      <td>MLO</td>
+    </tr>
+    <tr>
+      <th>1958-03-15</th>
+      <td>1958</td>
+      <td>3</td>
+      <td>21259</td>
+      <td>1958.2027</td>
+      <td>315.71</td>
+      <td>314.44</td>
+      <td>316.20</td>
+      <td>314.91</td>
+      <td>315.71</td>
+      <td>314.44</td>
+      <td>MLO</td>
+    </tr>
+    <tr>
+      <th>1958-04-15</th>
+      <td>1958</td>
+      <td>4</td>
+      <td>21290</td>
+      <td>1958.2877</td>
+      <td>317.45</td>
+      <td>315.16</td>
+      <td>317.30</td>
+      <td>314.99</td>
+      <td>317.45</td>
+      <td>315.16</td>
+      <td>MLO</td>
+    </tr>
+    <tr>
+      <th>1958-05-15</th>
+      <td>1958</td>
+      <td>5</td>
+      <td>21320</td>
+      <td>1958.3699</td>
+      <td>317.51</td>
+      <td>314.69</td>
+      <td>317.89</td>
+      <td>315.07</td>
+      <td>317.51</td>
+      <td>314.69</td>
+      <td>MLO</td>
+    </tr>
+    <tr>
+      <th>1958-06-15</th>
+      <td>1958</td>
+      <td>6</td>
+      <td>21351</td>
+      <td>1958.4548</td>
+      <td>-99.99</td>
+      <td>-99.99</td>
+      <td>317.27</td>
+      <td>315.15</td>
+      <td>317.27</td>
+      <td>315.15</td>
+      <td>MLO</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Next, let’s extract the column that we want to play with and make a new data frame out of it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">co2</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span><span class="s1">&#39;CO2 filled&#39;</span><span class="p">]]</span>
+<span class="n">co2</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Date&#39;</span><span class="p">:</span> <span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;CO2 filled&#39;</span><span class="p">:</span> <span class="s1">&#39;CO2&#39;</span><span class="p">},</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># rename columns for clarity</span>
+<span class="n">co2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>CO2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1958-02-15</th>
+      <td>1958.1260</td>
+      <td>-99.99</td>
+    </tr>
+    <tr>
+      <th>1958-03-15</th>
+      <td>1958.2027</td>
+      <td>315.71</td>
+    </tr>
+    <tr>
+      <th>1958-04-15</th>
+      <td>1958.2877</td>
+      <td>317.45</td>
+    </tr>
+    <tr>
+      <th>1958-05-15</th>
+      <td>1958.3699</td>
+      <td>317.51</td>
+    </tr>
+    <tr>
+      <th>1958-06-15</th>
+      <td>1958.4548</td>
+      <td>317.27</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>One last thing: the first and last value are missing, and they are encoded as -99, which is rather annoying (but unfortunately common; <a class="reference external" href="https://en.wikipedia.org/wiki/NaN">NaN</a> would be a much less disruptive choice), so let’s restrict our analysis to a safe, 66y interval:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">co2</span> <span class="o">=</span> <span class="n">co2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;1958-03-15&#39;</span><span class="p">:</span><span class="s1">&#39;2024-02-15&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can sit back and admire our work.</p>
+</section>
+<section id="id1">
+<h3>Question<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Q: plot CO2 as a function of time</p>
+<p>Hint: use pandas’s <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.html">plot function</a>.</p>
+<p>A:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">co2</span><span class="p">[</span><span class="s1">&#39;CO2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;CO2 [ppm]&#39;</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Mauna Loa Dataset (latest)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: title={&#39;center&#39;: &#39;Mauna Loa Dataset (latest)&#39;}, ylabel=&#39;CO2 [ppm]&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/27343a1650e79f07819af7c5da05a592aa3b1853aeb89d6b230fe3060f72a290.png" src="../_images/27343a1650e79f07819af7c5da05a592aa3b1853aeb89d6b230fe3060f72a290.png" />
+</div>
+</div>
+<p>Now we can sit back and admire our work.</p>
+</section>
+<section id="id2">
+<h3>Question<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>Q: plot CO2 as a function of time</p>
+<p>Hint: use pandas’s <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.html">plot function</a>.</p>
+<p>A:</p>
+</section>
+</section>
+<section id="trend-extraction">
+<h2>2. Trend Extraction<a class="headerlink" href="#trend-extraction" title="Link to this heading">#</a></h2>
+</section>
+<section id="linear-trend-model">
+<h2>2.1 Linear trend model<a class="headerlink" href="#linear-trend-model" title="Link to this heading">#</a></h2>
+<p>The most obvious thing to do is to see if a linear trend might fit the data.  In this case it’s likely to be a poor approximation, as the previous plot should make obvious. However, it will be an instructive benchmarks for the finer modeling choices we’ll subsequently make.</p>
+<p>Let’s first load the statsmodels API (=Application Programming Interface) to use its packages. What is happening under the hood is a simple linear regression, which you don’t need to know much about at this stage. Specifically, we will use the <a class="reference external" href="http://www.statsmodels.org/dev/generated/statsmodels.regression.linear_model.OLS.html">OLS method</a>. which relates a predictand <span class="math notranslate nohighlight">\(y\)</span> to a matrix of predictors <span class="math notranslate nohighlight">\(X\)</span>, called the <em>design matrix</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">co2</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">co2</span><span class="p">[</span><span class="s1">&#39;CO2&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vander</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># set up design matrix with 1, t as predictors</span>
+
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="n">lin_mdl</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span> <span class="c1"># fit the OLS model to the observations</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s pause and contemplate this, for a moment.</p>
+<p>First, we set up the design matrix X as a <a class="reference external" href="https://en.wikipedia.org/wiki/Vandermonde_matrix">Vandermonde matrix</a>; there is nothing particularly profound here; it is just a nice way to set this up in one function call.
+Second, we fit the model and that just involved importing a module and calling a <em>fit()</em> function.
+You have NO IDEA how lucky you are to have grown up in an age where fitting statistical models is that easy. Just like democracy, this is someting that has cost the blood, sweat and tears of countless generations before you, so you had better be grateful!</p>
+<p>But there’s more. stasmodels is an example of <strong>object-oriented</strong> programming. It means that every model object created by this code enjoys a wide array of properties and utilities.</p>
+<p>The first is a stunningly gorgeous summary of the model fit:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">lin_mdl</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    CO2   R-squared:                       0.976
+Model:                            OLS   Adj. R-squared:                  0.976
+Method:                 Least Squares   F-statistic:                 3.162e+04
+Date:                Tue, 21 May 2024   Prob (F-statistic):               0.00
+Time:                        15:37:39   Log-Likelihood:                -2382.0
+No. Observations:                 792   AIC:                             4768.
+Df Residuals:                     790   BIC:                             4777.
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+x1             1.6262      0.009    177.832      0.000       1.608       1.644
+const      -2879.4377     18.210   -158.127      0.000   -2915.183   -2843.693
+==============================================================================
+Omnibus:                       46.565   Durbin-Watson:                   0.066
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               45.317
+Skew:                           0.535   Prob(JB):                     1.44e-10
+Kurtosis:                       2.524   Cond. No.                     2.08e+05
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 2.08e+05. This might indicate that there are
+strong multicollinearity or other numerical problems.
+</pre></div>
+</div>
+</div>
+</div>
+<p>For more information about what each term means, see <a class="reference external" href="http://connor-johnson.com/2014/02/18/linear-regression-with-python/">this post</a></p>
+<p>What information can you glean from this summary? What features would you check for in a visual inspection?</p>
+<p>[ANSWER HERE]</p>
+<p>Let us look at the plot, shall we? How well does the time variable predict <span class="math notranslate nohighlight">\(CO_2\)</span>?</p>
+<p>Next, we can use the <em>predict()</em> method to predict CO2 given the design matrix (1, <span class="math notranslate nohighlight">\(t\)</span>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yhat</span> <span class="o">=</span> <span class="n">lin_mdl</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;MLO data&quot;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">yhat</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$CO_2 = \beta_0 + \beta_1 t$&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$CO_2$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x176952b30&gt;
+</pre></div>
+</div>
+<img alt="../_images/ef164aca4672025b4fb19d22b38129dc00cf7b270ad77c66742cec70b0e4278e.png" src="../_images/ef164aca4672025b4fb19d22b38129dc00cf7b270ad77c66742cec70b0e4278e.png" />
+</div>
+</div>
+<p>We see that the line captures the first order behavior of the series, but that leaves a lot to be desired. To zoom in, we can look at the <strong>residuals</strong> (original values - fitted values) as a function of fitted values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lin_mdl</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span><span class="n">lin_mdl</span><span class="o">.</span><span class="n">resid</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Residuals vs Fitted Values&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Fitted values&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Residuals&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Residuals&#39;)
+</pre></div>
+</div>
+<img alt="../_images/a11c39feb6369037d31ccf903992112c647c04ce2e27a4e486c4882344b7c6cb.png" src="../_images/a11c39feb6369037d31ccf903992112c647c04ce2e27a4e486c4882344b7c6cb.png" />
+</div>
+</div>
+<p>To be quantitative, we can look at the <a class="reference external" href="https://en.wikipedia.org/wiki/Root_mean_square_deviation">Root Mean Squared Error</a> of these residuals:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;RMSE = &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{:4.4f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">lin_mdl</span><span class="o">.</span><span class="n">mse_resid</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; ppm&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMSE = 4.9033 ppm
+</pre></div>
+</div>
+</div>
+</div>
+<p>This means that this linear trend is, on average, about 5ppm away from the measurements. Can we do better?</p>
+<section id="quadratic-fit">
+<h3>2.2. Quadratic fit<a class="headerlink" href="#quadratic-fit" title="Link to this heading">#</a></h3>
+<p>The second thing one might do is to add a quadratic term. Again, the Vandermonde matrix makes this very easy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vander</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="c1"># set up design matrix with 1, t, and t^2 as predictors</span>
+<span class="n">quad_mdl</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">quad_mdl</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="c1"># plot predicted values</span>
+<span class="n">yhat</span> <span class="o">=</span> <span class="n">quad_mdl</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Raw Data&quot;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">yhat</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$CO_2 = \beta_0 + \beta_1 t + \beta_2 t^2$&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$CO_2$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    CO2   R-squared:                       0.995
+Model:                            OLS   Adj. R-squared:                  0.995
+Method:                 Least Squares   F-statistic:                 7.812e+04
+Date:                Tue, 21 May 2024   Prob (F-statistic):               0.00
+Time:                        15:38:01   Log-Likelihood:                -1756.7
+No. Observations:                 792   AIC:                             3519.
+Df Residuals:                     789   BIC:                             3533.
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+x1             0.0134      0.000     55.121      0.000       0.013       0.014
+x2           -51.8912      0.971    -53.446      0.000     -53.797     -49.985
+const        5.04e+04    966.564     52.140      0.000    4.85e+04    5.23e+04
+==============================================================================
+Omnibus:                      118.499   Durbin-Watson:                   0.317
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               30.044
+Skew:                          -0.108   Prob(JB):                     2.99e-07
+Kurtosis:                       2.071   Cond. No.                     4.84e+10
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 4.84e+10. This might indicate that there are
+strong multicollinearity or other numerical problems.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1769e2ef0&gt;
+</pre></div>
+</div>
+<img alt="../_images/1b0d496a9cd189d0eebea5f6944fcef310419c2f5884fdf43b59cd6a1dd813f9.png" src="../_images/1b0d496a9cd189d0eebea5f6944fcef310419c2f5884fdf43b59cd6a1dd813f9.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">quad_mdl</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span><span class="n">quad_mdl</span><span class="o">.</span><span class="n">resid</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Residuals vs Fitted Values&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Fitted values&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Residuals&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;RMSE = &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{:4.4f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">quad_mdl</span><span class="o">.</span><span class="n">mse_resid</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; ppm&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMSE = 2.2277 ppm
+</pre></div>
+</div>
+<img alt="../_images/ceaaa5ec7d8fdc38be3811fd0c263137bbe34f369496d79cd13d71761388f4ca.png" src="../_images/ceaaa5ec7d8fdc38be3811fd0c263137bbe34f369496d79cd13d71761388f4ca.png" />
+</div>
+</div>
+<p><strong>Question 3</strong>
+Does this improve the fit?  By how much have we shrunk the RMSE of residuals?</p>
+<p>Comment in detail on how the addition of a quadratic term has changed plots a, b c and d. What issues have been solved? What issues remain?</p>
+<p>[ANSWERS HERE]</p>
+</section>
+</section>
+<section id="adding-periodic-components">
+<h2>3. Adding Periodic components<a class="headerlink" href="#adding-periodic-components" title="Link to this heading">#</a></h2>
+<p>It should be obvious from the simple visual inspection of the original series that there is a strong periodic component we are not currently capturing. It turns out to the a simple seasonal cycle: in spring/summer, the growth of terrestrial biomass sequesters CO2 away from the atmosphere, so the atmospheric CO2 concentrations goes down; the reverse happens in the Fall/Winter, where the fallen leaves are degraded and their organic carbon returned to mineral (CO2) form via respiration.</p>
+<p>Let us thus define harmonic waves (sines and cosines) with a period of 1 year and add them to the design matrix.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">t</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">t</span><span class="p">)))</span>
+<span class="n">Xh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">vander</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span><span class="n">H</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">seas_mdl</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">Xh</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">seas_mdl</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="c1"># plot predicted values</span>
+<span class="n">yhat</span> <span class="o">=</span> <span class="n">seas_mdl</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xh</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Raw Data&quot;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">yhat</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$CO_2 = \beta_0 + \beta_1 t + \beta_2 t^2 + \beta_3 cos(2\pi t) + \beta_4 sin(2\pi t)  $&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$CO_2$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    CO2   R-squared:                       0.999
+Model:                            OLS   Adj. R-squared:                  0.999
+Method:                 Least Squares   F-statistic:                 2.213e+05
+Date:                Tue, 21 May 2024   Prob (F-statistic):               0.00
+Time:                        15:38:15   Log-Likelihood:                -1070.5
+No. Observations:                 792   AIC:                             2151.
+Df Residuals:                     787   BIC:                             2174.
+Df Model:                           4                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+x1             0.0134      0.000    130.916      0.000       0.013       0.014
+x2           -51.8860      0.409   -126.934      0.000     -52.688     -51.084
+const       5.039e+04    406.930    123.831      0.000    4.96e+04    5.12e+04
+x3            -1.0027      0.047    -21.233      0.000      -1.095      -0.910
+x4             2.6689      0.047     56.733      0.000       2.577       2.761
+==============================================================================
+Omnibus:                        8.817   Durbin-Watson:                   0.529
+Prob(Omnibus):                  0.012   Jarque-Bera (JB):                6.328
+Skew:                           0.090   Prob(JB):                       0.0423
+Kurtosis:                       2.600   Cond. No.                     4.84e+10
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 4.84e+10. This might indicate that there are
+strong multicollinearity or other numerical problems.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x176bf2fe0&gt;
+</pre></div>
+</div>
+<img alt="../_images/6b667267e513b65d8991240fd8575104cac2ab60fdabaef7cea255aa3f7bbb0f.png" src="../_images/6b667267e513b65d8991240fd8575104cac2ab60fdabaef7cea255aa3f7bbb0f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">seas_mdl</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span><span class="n">seas_mdl</span><span class="o">.</span><span class="n">resid</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Residuals vs Fitted Values&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Fitted values&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Residuals&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;RMSE = &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{:4.4f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">seas_mdl</span><span class="o">.</span><span class="n">mse_resid</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; ppm&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMSE = 0.9379 ppm
+</pre></div>
+</div>
+<img alt="../_images/4fb89d62a823351e237ecbaf2f87e95031af01338647afd836a823e5e72598be.png" src="../_images/4fb89d62a823351e237ecbaf2f87e95031af01338647afd836a823e5e72598be.png" />
+</div>
+</div>
+<p><strong>Question 4</strong></p>
+<p>This should look better. Does it?  By how much have we shrunk the RMSE of residuals?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:4.4f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">seas_mdl</span><span class="o">.</span><span class="n">mse_resid</span><span class="o">/</span><span class="n">lin_mdl</span><span class="o">.</span><span class="n">mse_resid</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>80.8727
+</pre></div>
+</div>
+</div>
+</div>
+<p>Answer: over 80% improvement!</p>
+<section id="seasonal-trend-decomposition-using-loess-stl">
+<h3>Seasonal-Trend decomposition using LOESS (STL)<a class="headerlink" href="#seasonal-trend-decomposition-using-loess-stl" title="Link to this heading">#</a></h3>
+<p>As it turns out, statsmodels already contains much more sophisticated tools to do this sort of work. Witness <a class="reference external" href="https://www.statsmodels.org/dev/examples/notebooks/generated/stl_decomposition.html#Forecasting-with-STL">STL decomposition</a> in action:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.tsa.seasonal</span> <span class="kn">import</span> <span class="n">STL</span>
+<span class="n">co2_s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
+    <span class="n">co2</span><span class="p">[</span><span class="s1">&#39;CO2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;3-15-1958&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">co2</span><span class="p">),</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;M&quot;</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;CO2&quot;</span>
+<span class="p">)</span>
+<span class="n">stl</span> <span class="o">=</span> <span class="n">STL</span><span class="p">(</span><span class="n">co2_s</span><span class="p">,</span> <span class="n">seasonal</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">stl_res</span> <span class="o">=</span> <span class="n">stl</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">stl_res</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/37321f70388a0ff6bf2b70eeca7db539aa06b27009eba0b7a2161be2ae27ae50.png" src="../_images/37321f70388a0ff6bf2b70eeca7db539aa06b27009eba0b7a2161be2ae27ae50.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">stl_res</span><span class="o">.</span><span class="n">_resid</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;RMSE = &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{:4.4f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rmse</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; ppm&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMSE = 0.2215 ppm
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we can see, this decomposition got us much, much closer to the observations, with an RMSE of just 0.22 ppm. This is because the seasonal cycle is allowed to fluctuate in amplitude, and the trend is also more general than a quadratic. However, this is more of a black box.</p>
+</section>
+</section>
+<section id="forecasting">
+<h2>4. Forecasting<a class="headerlink" href="#forecasting" title="Link to this heading">#</a></h2>
+<p>Let us return to our parametric model of atmospheric <span class="math notranslate nohighlight">\(CO_2\)</span> (quadractic trend + seasonal harmonics), which we may use  to forecast future observations. Let’s extend our time axis to 2050 and see what <span class="math notranslate nohighlight">\(CO_2\)</span> may look like then if we don’t curb emissions or fail to remove it from the atmosphere:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tn</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">tn</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">tf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">tn</span><span class="p">)</span><span class="o">+</span><span class="n">dt</span><span class="p">,</span><span class="mi">2050</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span>
+<span class="n">tp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">tn</span><span class="p">,</span><span class="n">tf</span><span class="p">))</span>
+<span class="n">nf</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tf</span><span class="p">)</span> <span class="c1">#number of future values to forecast</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Hp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">tp</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">tp</span><span class="p">)))</span>
+<span class="n">Xp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">vander</span><span class="p">(</span><span class="n">tp</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span><span class="n">Hp</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">yh</span> <span class="o">=</span> <span class="n">seas_mdl</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xp</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span><span class="s1">&#39;k.&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Raw Data&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tp</span><span class="p">,</span> <span class="n">yh</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$CO_2 = \beta_0 + \beta_1 t + \beta_2 t^2 + \beta_3 cos(2\pi t) + \beta_4 sin(2\pi t)  $&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$CO_2$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x176b4a8f0&gt;
+</pre></div>
+</div>
+<img alt="../_images/3fbbcc26d515cee7d0f53904bea78a1baf7a69ea56904f2e0ac0782d744b5f0d.png" src="../_images/3fbbcc26d515cee7d0f53904bea78a1baf7a69ea56904f2e0ac0782d744b5f0d.png" />
+</div>
+</div>
+<p>From this, one can estimate. e.g. the time of first crossing 450 ppm, for instance.</p>
+<p>Of course, those predictions are only as good as the data that went into them, and the assumptions that the same processes will continue to operate at the same rate. Note that there are much more sophisticated methods for timeseries forecasting basd on machine learning, e.g. <a class="reference external" href="https://tsfresh.com">tsfresh</a>.   Another option that would likely work here is using seasonal ARIMA models, as done <a class="reference external" href="https://www.statsmodels.org/dev/examples/notebooks/generated/stl_decomposition.html#Forecasting-with-STL">here</a>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">PyRATES practicums</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="signal_processing.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">PyRATES: Signal Processing</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background">Background</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-wrangling">Data Wrangling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question">Question</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Question</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Question</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trend-extraction">2. Trend Extraction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-trend-model">2.1 Linear trend model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quadratic-fit">2.2. Quadratic fit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-periodic-components">3. Adding Periodic components</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seasonal-trend-decomposition-using-loess-stl">Seasonal-Trend decomposition using LOESS (STL)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forecasting">4. Forecasting</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Julien Emile-Geay
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

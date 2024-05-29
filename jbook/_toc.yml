@@ -1,0 +1,11 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: notebooks/Intro_Mauna_Loa.ipynb
+- file: notebooks/signal_processing.ipynb
+- file: notebooks/Association.ipynb
+- file: notebooks/Spectral_Analysis_Rio_Grande.ipynb
+- file: notebooks/wavelets&coherence.ipynb
