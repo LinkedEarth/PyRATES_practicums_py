@@ -1,0 +1,1016 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>PyRATES: Signal Processing &#8212; PyRATES practicums with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/signal_processing';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="PyRATES: Measures of association" href="Association.html" />
+    <link rel="prev" title="PyRATES: Introduction to Timeseries" href="Intro_Mauna_Loa.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/Pyrateslogo.png" class="logo__image only-light" alt="PyRATES practicums with Python - Home"/>
+    <script>document.write(`<img src="../_static/Pyrateslogo.png" class="logo__image only-dark" alt="PyRATES practicums with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    PyRATES practicums
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Intro_Mauna_Loa.html">PyRATES: Introduction to Timeseries</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">PyRATES: Signal Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Association.html">PyRATES: Measures of association</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Spectral_Analysis_Rio_Grande.html">PyRATES: Spectral Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wavelets%26coherence.html">PyRATES: Wavelets and Coherency</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/LinkedEarth/PyRATES_practicums_py/main?urlpath=tree/jbook/notebooks/signal_processing.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/LinkedEarth/PyRATES_practicums_py" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/LinkedEarth/PyRATES_practicums_py/issues/new?title=Issue%20on%20page%20%2Fnotebooks/signal_processing.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/signal_processing.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>PyRATES: Signal Processing</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preamble">Preamble</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goals">Goals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keywords">Keywords</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-requisites">Pre-requisites</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relevant-packages">Relevant Packages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering">Filtering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-types">Filter Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lowpass-filter">Lowpass filter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#high-pass-filter">High-pass filter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#band-pass-filter">Band-pass filter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notch-filter">Notch filter</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#window-carpentry">Window Carpentry</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#detrending">Detrending</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#built-in-detrending-methods-in-pyleoclim">Built-in detrending methods in <code class="docutils literal notranslate"><span class="pre">Pyleoclim</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tweaking-parameters">Tweaking parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ssa-detrending">SSA detrending</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#takeways">Takeways</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <img src='http://linked.earth/FROGS/images/Pyrateslogo.jpg' width="400"><section class="tex2jax_ignore mathjax_ignore" id="pyrates-signal-processing">
+<h1>PyRATES: Signal Processing<a class="headerlink" href="#pyrates-signal-processing" title="Link to this heading">#</a></h1>
+<p>by <a class="reference external" href="https://orcid.org/0000-0001-5920-4751">Julien Emile-Geay</a>, University of Southern California</p>
+<section id="preamble">
+<h2>Preamble<a class="headerlink" href="#preamble" title="Link to this heading">#</a></h2>
+<p>Often timeseries have to be treated prior to analysis. This is a delicate game:  altering data is a cardinal sin, so one needs to be very aware of one’s doing prior to engaging in this activity. Here we show a few examples where such treatment may be warranted.</p>
+<section id="goals">
+<h3>Goals<a class="headerlink" href="#goals" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Become familiar with the various filtering methods and some of their arguments</p></li>
+<li><p>Become familiar with the various detrending methods and some of their arguments</p></li>
+</ul>
+<p><strong>Reading Time: 20 min</strong></p>
+</section>
+<section id="keywords">
+<h3>Keywords<a class="headerlink" href="#keywords" title="Link to this heading">#</a></h3>
+<p>Filtering, Detrending.</p>
+</section>
+<section id="pre-requisites">
+<h3>Pre-requisites<a class="headerlink" href="#pre-requisites" title="Link to this heading">#</a></h3>
+<p>Some timeseries analysis, ideally</p>
+</section>
+<section id="relevant-packages">
+<h3>Relevant Packages<a class="headerlink" href="#relevant-packages" title="Link to this heading">#</a></h3>
+<p>pyleoclim, pandas, matplotlib, numpy</p>
+<p>Let us first load necessary packages:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pyleoclim</span> <span class="k">as</span> <span class="nn">pyleo</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="filtering">
+<h2>Filtering<a class="headerlink" href="#filtering" title="Link to this heading">#</a></h2>
+<p>The goal of filtering is to enhance part of a signal, or suppress one or more parts. <code class="docutils literal notranslate"><span class="pre">Pyleoclim</span></code> incorporates a <a class="reference external" href="https://pyleoclim-util.readthedocs.io/en/master/core/api.html?highlight=lipd#pyleoclim.core.series.Series.filter">vast array of filters</a>, some inherited from the SciPy library.  To filter a <code class="docutils literal notranslate"><span class="pre">Series</span></code> object, simply apply the <code class="docutils literal notranslate"><span class="pre">.filter()</span></code> method. One innovation of our package is that is makes it easy to specify either a cutoff scale (period) or a cutoff frequency.</p>
+<p>Let’s use data fron a Hawai’i seismogram and isolate certain oscillations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/hawaii.e.dat&#39;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span><span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;ground_motion&#39;</span><span class="p">])</span>
+<span class="n">gm</span> <span class="o">=</span> <span class="n">pyleo</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">time</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="n">time_unit</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">,</span>
+                  <span class="n">value</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;ground_motion&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">1000</span><span class="p">,</span> <span class="n">value_name</span> <span class="o">=</span> <span class="s1">&#39;amplitude (m)&#39;</span><span class="p">,</span>
+                  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Hawaii.e&#39;</span><span class="p">,</span>
+                  <span class="n">auto_time_params</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                  <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">gm</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:1: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+&lt;&gt;:1: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+/var/folders/bf/_x19bm694857h_hrw44j0p7w0000gn/T/ipykernel_76715/265003603.py:1: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+  df = pd.read_csv(&#39;../data/hawaii.e.dat&#39;,sep=&#39;\s+&#39;,names=[&#39;time&#39;,&#39;ground_motion&#39;])
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 1000x400 with 1 Axes&gt;,
+ &lt;Axes: xlabel=&#39;time [s]&#39;, ylabel=&#39;amplitude (m)&#39;&gt;)
+</pre></div>
+</div>
+<img alt="../_images/24739b8bcae6ca1c8f9532cb32eb85e6bec7461516f4440a2bffa3e4636f5bcc.png" src="../_images/24739b8bcae6ca1c8f9532cb32eb85e6bec7461516f4440a2bffa3e4636f5bcc.png" />
+</div>
+</div>
+</section>
+<section id="filter-types">
+<h2>Filter Types<a class="headerlink" href="#filter-types" title="Link to this heading">#</a></h2>
+<section id="lowpass-filter">
+<h3>Lowpass filter<a class="headerlink" href="#lowpass-filter" title="Link to this heading">#</a></h3>
+<p>Let’s use a Butterworth filter with a <code class="docutils literal notranslate"><span class="pre">cutoff_scale</span></code> of 5 to remove all frequencies with a period of less than 5s. This is known as a <strong>low-pass filter</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gm_low</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">cutoff_scale</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">gm_low</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="n">gm</span><span class="o">.</span><span class="n">label</span> <span class="o">+</span> <span class="s1">&#39; (5s lowpass)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">gm_low</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">cutoff_scale</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">gm_low</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="n">gm</span><span class="o">.</span><span class="n">label</span> <span class="o">+</span> <span class="s1">&#39; (5s lowpass)&#39;</span><span class="p">)</span>
+
+<span class="nn">File ~/Documents/GitHub/Pyleoclim_util/pyleoclim/core/series.py:1485,</span> in <span class="ni">Series.filter</span><span class="nt">(self, cutoff_freq, cutoff_scale, method, keep_log, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1362</span><span class="w"> </span><span class="sd">&#39;&#39;&#39; Filtering methods for Series objects using four possible methods:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1363</span><span class="sd">     - `Butterworth &lt;https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.butter.html&gt;`_</span>
+<span class="g g-Whitespace">   </span><span class="mi">1364</span><span class="sd">     - `Lanczos &lt;http://scitools.org.uk/iris/docs/v1.2/examples/graphics/SOI_filtering.html&gt;`_</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1482</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1483</span><span class="sd"> &#39;&#39;&#39;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1484</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_evenly_spaced</span><span class="p">():</span>
+<span class="ne">-&gt; </span><span class="mi">1485</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;This  method assumes evenly-spaced timeseries, while the input is not. Use the &quot;.interp()&quot;, &quot;.bin()&quot; or &quot;.gkernel()&quot; methods prior to &quot;.filter()&quot;.&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1487</span> <span class="n">new</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1489</span> <span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="c1"># extract the mean</span>
+
+<span class="ne">ValueError</span>: This  method assumes evenly-spaced timeseries, while the input is not. Use the &quot;.interp()&quot;, &quot;.bin()&quot; or &quot;.gkernel()&quot; methods prior to &quot;.filter()&quot;.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ooops. We got an error message. It must be that the time axis is uneven. Let’s use the <a class="reference external" href="https://pyleoclim-util.readthedocs.io/en/latest/core/api.html#pyleoclim.core.series.Series.resolution">resolution()</a> function to visualize what’s happening.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gm</span><span class="o">.</span><span class="n">resolution</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 1000x400 with 1 Axes&gt;,
+ &lt;Axes: xlabel=&#39;time [s]&#39;, ylabel=&#39;resolution [s]&#39;&gt;)
+</pre></div>
+</div>
+<img alt="../_images/ab5b5a848a1a721b1a29023e64dce2e0eaeab60d36c52d6982a9a8326d3873a3.png" src="../_images/ab5b5a848a1a721b1a29023e64dce2e0eaeab60d36c52d6982a9a8326d3873a3.png" />
+</div>
+</div>
+<p>It appears that the resolution jumps at the 100th second, for some reason. Let’s interpolate to get an even resolution of 1ms, and check that nothing crazy is happening:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">step</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;original&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">ts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;interpolated&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;time [s]&#39;, ylabel=&#39;amplitude (m)&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/5648a4d664fade12be1be628f583de378361d93ea02f5f894122aea911ef8c23.png" src="../_images/5648a4d664fade12be1be628f583de378361d93ea02f5f894122aea911ef8c23.png" />
+</div>
+</div>
+<p>The two series are indistinguishable, so we are safe to proceed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lp</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">cutoff_scale</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;original&#39;</span><span class="p">)</span>
+<span class="n">lp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;low-pass&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;time [s]&#39;, ylabel=&#39;amplitude (m)&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/fa34005586b1ceb16da07cc6128fbee218a3a858bf0840abf459e2fd5673d961.png" src="../_images/fa34005586b1ceb16da07cc6128fbee218a3a858bf0840abf459e2fd5673d961.png" />
+</div>
+</div>
+<p>One can see edge effects at the end of the series. This is because the series starts and ends with different values. <a class="reference external" href="https://docs.obspy.org/master/packages/autogen/obspy.core.trace.Trace.taper.html">Tapering</a> would mitigate that.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lpa</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">cutoff_scale</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="s1">&#39;ARIMA&#39;</span><span class="p">)</span>  <span class="c1"># DOES NOT WORK</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;original&#39;</span><span class="p">)</span>
+<span class="n">lpa</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;low-pass, ARIMA padding&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;time [s]&#39;, ylabel=&#39;amplitude (m)&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/7dc94819615d7a48eeaa87d1fe832e2819a17697ee1c023ec0b5d4014f144756.png" src="../_images/7dc94819615d7a48eeaa87d1fe832e2819a17697ee1c023ec0b5d4014f144756.png" />
+</div>
+</div>
+</section>
+<section id="high-pass-filter">
+<h3>High-pass filter<a class="headerlink" href="#high-pass-filter" title="Link to this heading">#</a></h3>
+<p>The opposite operation is a <strong>high-pass</strong> filter, which keeps only frequencies higher than a given cutoff. To generate a high-pass filter, you can simply subtract the low-pass filtered version from the original:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hp</span> <span class="o">=</span> <span class="n">lp</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1"># copy the series into a new object</span>
+<span class="n">hp</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">value</span> <span class="o">-</span> <span class="n">lp</span><span class="o">.</span><span class="n">value</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;original&#39;</span><span class="p">)</span>
+<span class="n">hp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;high-pass&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;time [s]&#39;, ylabel=&#39;amplitude (m)&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/c58a2c636c54d275224657a4808e9b8bbae0726c99cff109c872da1ae38305fa.png" src="../_images/c58a2c636c54d275224657a4808e9b8bbae0726c99cff109c872da1ae38305fa.png" />
+</div>
+</div>
+</section>
+<section id="band-pass-filter">
+<h3>Band-pass filter<a class="headerlink" href="#band-pass-filter" title="Link to this heading">#</a></h3>
+<p>If you want to isolate variability in a band of frequencies (say 1-2s), simply pass a 2-list of cutoff scales:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bp</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">cutoff_scale</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;original&#39;</span><span class="p">)</span>
+<span class="n">bp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;1-2s band-pass&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;time [s]&#39;, ylabel=&#39;amplitude (m)&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/b8ab4591900ffa052525dd94a6d848e0c9a0af72d163fa9082984be05800264d.png" src="../_images/b8ab4591900ffa052525dd94a6d848e0c9a0af72d163fa9082984be05800264d.png" />
+</div>
+</div>
+</section>
+<section id="notch-filter">
+<h3>Notch filter<a class="headerlink" href="#notch-filter" title="Link to this heading">#</a></h3>
+<p>Conversely, if you wanted to remove all variability between 1-2s (a <strong>notch</strong> in frequency space), you would subtract the bandpass-filtered version.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">notch</span> <span class="o">=</span> <span class="n">bp</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1"># copy the series into a new object</span>
+<span class="n">notch</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">value</span> <span class="o">-</span> <span class="n">bp</span><span class="o">.</span><span class="n">value</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;original&#39;</span><span class="p">)</span>
+<span class="n">hp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;1-2s notch&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;time [s]&#39;, ylabel=&#39;amplitude (m)&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/fea044f155d95d01e4ca048dad91a2dbff548e4102d7306594b3e83366e14c10.png" src="../_images/fea044f155d95d01e4ca048dad91a2dbff548e4102d7306594b3e83366e14c10.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="window-carpentry">
+<h2>Window Carpentry<a class="headerlink" href="#window-carpentry" title="Link to this heading">#</a></h2>
+<p>In the above we only used the default method (Butterworth) to generate the filter coefficient. SciPy’s <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.firwin.html">Finite Impulse Response function</a> makes it easy to apply many different types of windows,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from scipy import signal</span>
+<span class="c1"># windows = [&#39;boxcar&#39;,&#39;triang&#39;,&#39;blackman&#39;,&#39;lanczos&#39;]</span>
+<span class="c1"># fig, axs = plt.subplots(4,2,figsize=(10,8))</span>
+<span class="c1"># Nx = 31</span>
+
+<span class="c1"># for i, win in enumerate(windows):</span>
+<span class="c1">#     win_dow = signal.get_window(win,Nx)</span>
+<span class="c1">#     axs[i,0].plot(win_dow, label = win + &#39; window&#39;)</span>
+<span class="c1">#     filt = ts.filter(cutoff_scale=2, method=&#39;firwin&#39;,window=win)</span>
+<span class="c1">#     ts.plot(ax=axs[i,1],label=&#39;original&#39;,xlabel=&#39;&#39;)</span>
+<span class="c1">#     filt.plot(ax=axs[i,1],label=&#39;2s lowpass, &#39;+win,xlabel=&#39;&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="detrending">
+<h2>Detrending<a class="headerlink" href="#detrending" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gmst</span> <span class="o">=</span> <span class="n">pyleo</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;HadCRUT5&#39;</span><span class="p">)</span>
+<span class="n">gmst</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 1000x400 with 1 Axes&gt;,
+ &lt;Axes: xlabel=&#39;Time [year C.E.]&#39;, ylabel=&#39;GMST [$^{\\circ}$C]&#39;&gt;)
+</pre></div>
+</div>
+<img alt="../_images/31c3b620e247d59d232944883f9ff33b18c6e3c0b8d055ca0696040e9b3c2476.png" src="../_images/31c3b620e247d59d232944883f9ff33b18c6e3c0b8d055ca0696040e9b3c2476.png" />
+</div>
+</div>
+<p>The “trend” here is complex, and likely nonlinear. If we wanted to describe it linearly, one would have to distinguish 4 periods: cooling in the late 19th century, warming from 1900 to 1940, cooling from 1940 to 1970, followed by steady warming.</p>
+<section id="built-in-detrending-methods-in-pyleoclim">
+<h3>Built-in detrending methods in <code class="docutils literal notranslate"><span class="pre">Pyleoclim</span></code><a class="headerlink" href="#built-in-detrending-methods-in-pyleoclim" title="Link to this heading">#</a></h3>
+<p>Let’s apply 3 methods using their default parameters: linear detrending, empirical mode decomposition, and a Savitzky-Golay filter, which is meant to isolate the lowest-order trend:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">methods</span>  <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="s1">&#39;emd&#39;</span><span class="p">,</span> <span class="s1">&#39;savitzky-golay&#39;</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">axs</span><span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">mthd</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">methods</span><span class="p">):</span>
+    <span class="n">gmst_dtd</span> <span class="o">=</span> <span class="n">gmst</span><span class="o">.</span><span class="n">detrend</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">mthd</span><span class="p">,</span><span class="n">keep_log</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">trend</span> <span class="o">=</span> <span class="n">gmst</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">trend</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">gmst_dtd</span><span class="o">.</span><span class="n">log</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;previous_trend&#39;</span><span class="p">]</span> <span class="c1"># retrieve the trend from the log    </span>
+    <span class="n">gmst</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">trend</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;trend, &#39;</span> <span class="o">+</span> <span class="n">mthd</span><span class="p">)</span>
+    <span class="n">gmst_dtd</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;detrended&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ddb3d37a14fe80b1f83cb4985f3b524e8ac00dde15e5f7d8e73034ca6fc2eb1c.png" src="../_images/ddb3d37a14fe80b1f83cb4985f3b524e8ac00dde15e5f7d8e73034ca6fc2eb1c.png" />
+</div>
+</div>
+<p>The linear trend here does a decent job at capturing first-order behavior, but the two nonlinear methods are out to lunch. Savitzky-Golay does not have a tuning knob, so that’s that. However, EMD does allow you to pick different modes (<span class="math notranslate nohighlight">\(n=1\)</span> is the default).</p>
+</section>
+<section id="tweaking-parameters">
+<h3>Tweaking parameters<a class="headerlink" href="#tweaking-parameters" title="Link to this heading">#</a></h3>
+<p>Let’s try modes 1-4 (<span class="math notranslate nohighlight">\(n=0, 1 ,2 ,3\)</span>) and see which fits best.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">axs</span><span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">gmst_dtd</span> <span class="o">=</span> <span class="n">gmst</span><span class="o">.</span><span class="n">detrend</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;emd&#39;</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span><span class="n">keep_log</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">trend</span> <span class="o">=</span> <span class="n">gmst</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">trend</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">gmst_dtd</span><span class="o">.</span><span class="n">log</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;previous_trend&#39;</span><span class="p">]</span> <span class="c1"># retrieve the trend from the log    </span>
+    <span class="n">gmst</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+    <span class="n">trend</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s1">&#39;EMD trend, $n=</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+    <span class="n">gmst_dtd</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;detrended&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/5550b330b96c7bc7c7aa17c4640cbda7930095712652386f34dd21a9e1f1bb9f.png" src="../_images/5550b330b96c7bc7c7aa17c4640cbda7930095712652386f34dd21a9e1f1bb9f.png" />
+</div>
+</div>
+<p>The choice is subjective, but it would be reasonable to pick <span class="math notranslate nohighlight">\(n=2\)</span> as characterizing the low-order nonlinear trend. This flexibility of EMD is the reason why it is the default choice in <code class="docutils literal notranslate"><span class="pre">Pyleoclim</span></code>.</p>
+</section>
+<section id="ssa-detrending">
+<h3>SSA detrending<a class="headerlink" href="#ssa-detrending" title="Link to this heading">#</a></h3>
+<p>Another option to isolate a non-linear trend is <a class="reference external" href="http://linked.earth/PyleoTutorials/notebooks/L2_singular_spectrum_analysis.html">Singular Spectrum Analysis</a>. If there is a prominent trend, it is often the first mode coming out of that analysis. Let’s see this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gmst_ssa</span> <span class="o">=</span> <span class="n">gmst</span><span class="o">.</span><span class="n">ssa</span><span class="p">()</span>
+<span class="n">gmst_ssa</span><span class="o">.</span><span class="n">screeplot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 600x400 with 1 Axes&gt;,
+ &lt;Axes: title={&#39;center&#39;: &#39;SSA scree plot&#39;}, xlabel=&#39;Mode index $i$&#39;, ylabel=&#39;$\\lambda_i$&#39;&gt;)
+</pre></div>
+</div>
+<img alt="../_images/d5c1045f78a1daa685fc9420fc9f048105320e6ec482597d377227b795e8f632.png" src="../_images/d5c1045f78a1daa685fc9420fc9f048105320e6ec482597d377227b795e8f632.png" />
+</div>
+</div>
+<p>Indeed, the first mode accounts for an overwhelming fraction of the variance:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gmst_ssa</span><span class="o">.</span><span class="n">pctvar</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;%&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>83.35%
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is what the mode looks like:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gmst_ssa</span><span class="o">.</span><span class="n">modeplot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 1000x500 with 3 Axes&gt;,
+ &lt;Axes: title={&#39;center&#39;: &#39;RC Spectrum (mtm)&#39;}, xlabel=&#39;Period [year]&#39;, ylabel=&#39;PSD&#39;&gt;)
+</pre></div>
+</div>
+<img alt="../_images/6a8784bd4ac8c418738365e0620f4bfa18d74488a689f8bb53c088daaee1466e.png" src="../_images/6a8784bd4ac8c418738365e0620f4bfa18d74488a689f8bb53c088daaee1466e.png" />
+</div>
+</div>
+<p>To remove this mode from the original series, you would do:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gmst_ssa</span> <span class="o">=</span> <span class="n">gmst</span><span class="o">.</span><span class="n">ssa</span><span class="p">(</span><span class="n">trunc</span><span class="o">=</span><span class="s1">&#39;var&#39;</span><span class="p">)</span> <span class="c1"># this will select the mode(s) that account for a certain fraction of variance, here 80% by default. </span>
+<span class="n">ssa_trend</span> <span class="o">=</span> <span class="n">gmst_ssa</span><span class="o">.</span><span class="n">RCseries</span>
+<span class="n">ssa_trend</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 1000x400 with 1 Axes&gt;,
+ &lt;Axes: xlabel=&#39;Time [year C.E.]&#39;, ylabel=&#39;GMST [$^{\\circ}$C]&#39;&gt;)
+</pre></div>
+</div>
+<img alt="../_images/98158d97976d8f50aee9610c56de3b7ea545c974ca8d59d73d8a9a1c16f85412.png" src="../_images/98158d97976d8f50aee9610c56de3b7ea545c974ca8d59d73d8a9a1c16f85412.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gmst_ssa_dtd</span> <span class="o">=</span> <span class="n">gmst</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1"># copy the original</span>
+<span class="n">gmst_ssa_dtd</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">gmst</span><span class="o">.</span><span class="n">value</span> <span class="o">-</span> <span class="n">ssa_trend</span><span class="o">.</span><span class="n">value</span> <span class="c1"># remove SSA trend from original</span>
+<span class="n">gmst_ssa_dtd</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">gmst</span><span class="o">.</span><span class="n">label</span> <span class="o">+</span> <span class="s1">&#39; (SSA detrended)&#39;</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">gmst</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">ssa_trend</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;SSA trend&#39;</span><span class="p">)</span>
+<span class="n">gmst_ssa_dtd</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Time [year C.E.]&#39;, ylabel=&#39;GMST [$^{\\circ}$C]&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/83372d6ace8e6d6ddddd3493384daa750865a48bce9681eacdffe9ffb44624a7.png" src="../_images/83372d6ace8e6d6ddddd3493384daa750865a48bce9681eacdffe9ffb44624a7.png" />
+</div>
+</div>
+<p>This pre-processing allows to better isolate oscillatory behavior. To see this, let’s look at the <a class="reference external" href="http://linked.earth/PyleoTutorials/notebooks/L2_spectral_analysis.html">spectra</a> of the original and detrended versions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gmst</span><span class="o">.</span><span class="n">spectral</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mtm&#39;</span><span class="p">,</span><span class="n">settings</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;NW&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">})</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">gmst_ssa_dtd</span><span class="o">.</span><span class="n">spectral</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mtm&#39;</span><span class="p">,</span><span class="n">settings</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;NW&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">})</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 1000x400 with 1 Axes&gt;,
+ &lt;Axes: xlabel=&#39;Period [year]&#39;, ylabel=&#39;PSD&#39;&gt;)
+</pre></div>
+</div>
+<img alt="../_images/ae99d48fcf5c049613f3633add62d8dcdf600dad1d144e9b544ffd68ea671dbb.png" src="../_images/ae99d48fcf5c049613f3633add62d8dcdf600dad1d144e9b544ffd68ea671dbb.png" />
+<img alt="../_images/6cadb2cc5e663310a3c21a92f0e6089eac746f8a756ddafc27012e85e05452dd.png" src="../_images/6cadb2cc5e663310a3c21a92f0e6089eac746f8a756ddafc27012e85e05452dd.png" />
+</div>
+</div>
+<p>We see that detrending has removed much of the variability at scales longer than ~30y, allowing to hone in on various peaks near 3.5, 6, 10 and 20 years. To see if those are significant, however, you would need to apply <code class="docutils literal notranslate"><span class="pre">signif_test()</span></code>, which we illustrate in <a class="reference internal" href="#./Spectral_Analysis_Rio_Grande.md"><span class="xref myst">another tutorial</span></a>.</p>
+</section>
+</section>
+<section id="takeways">
+<h2>Takeways<a class="headerlink" href="#takeways" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Pyleoclim</span></code> enables easy filtering and detrending</p></li>
+<li><p><strong>Interactive visualization is a key part of the process</strong>, to make sure that the signal processing is achieving what it is supposed to do.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Intro_Mauna_Loa.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">PyRATES: Introduction to Timeseries</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Association.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">PyRATES: Measures of association</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preamble">Preamble</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goals">Goals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keywords">Keywords</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-requisites">Pre-requisites</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relevant-packages">Relevant Packages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering">Filtering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-types">Filter Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lowpass-filter">Lowpass filter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#high-pass-filter">High-pass filter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#band-pass-filter">Band-pass filter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notch-filter">Notch filter</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#window-carpentry">Window Carpentry</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#detrending">Detrending</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#built-in-detrending-methods-in-pyleoclim">Built-in detrending methods in <code class="docutils literal notranslate"><span class="pre">Pyleoclim</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tweaking-parameters">Tweaking parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ssa-detrending">SSA detrending</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#takeways">Takeways</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Julien Emile-Geay
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
