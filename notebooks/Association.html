@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PyRATES: Measures of association &#8212; PyRATES practicums with Python</title>
+    <title>Chapter 3: Measures of association &#8212; PyRATES practicums with Python</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -60,8 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/Association';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="PyRATES: Spectral Analysis" href="Spectral_Analysis_Rio_Grande.html" />
-    <link rel="prev" title="PyRATES: Signal Processing" href="signal_processing.html" />
+    <link rel="next" title="Chapter 4: Spectral Analysis" href="Spectral_Analysis_Rio_Grande.html" />
+    <link rel="prev" title="Chapter 2: Signal Processing" href="signal_processing.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -173,16 +173,16 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    PyRATES practicums
+                    PyRATES: Python and R Analysis of Time Series
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Intro_Mauna_Loa.html">PyRATES: Introduction to Timeseries</a></li>
-<li class="toctree-l1"><a class="reference internal" href="signal_processing.html">PyRATES: Signal Processing</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">PyRATES: Measures of association</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Spectral_Analysis_Rio_Grande.html">PyRATES: Spectral Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="wavelets%26coherence.html">PyRATES: Wavelets and Coherency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Intro_Mauna_Loa.html">Chapter 1: Introduction to Timeseries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="signal_processing.html">Chapter 2: Signal Processing</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 3: Measures of association</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Spectral_Analysis_Rio_Grande.html">Chapter 4: Spectral Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wavelets%26coherence.html">Chapter 5: Wavelets and Coherency</a></li>
 </ul>
 
     </div>
@@ -399,7 +399,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>PyRATES: Measures of association</h1>
+    <h1>Chapter 3: Measures of association</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -429,8 +429,8 @@ document.write(`
                 <article class="bd-article">
                   
   <img src='http://linked.earth/FROGS/images/Pyrateslogo.jpg' width="400">
-<section class="tex2jax_ignore mathjax_ignore" id="pyrates-measures-of-association">
-<h1>PyRATES: Measures of association<a class="headerlink" href="#pyrates-measures-of-association" title="Link to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="chapter-3-measures-of-association">
+<h1>Chapter 3: Measures of association<a class="headerlink" href="#chapter-3-measures-of-association" title="Link to this heading">#</a></h1>
 <p>In this notebook we explore the relationship between two well-known climate indices, the Southern Oscillation Index (SOI) and the North Atlantic Oscillation (NAO) index.  The NAO and SOI index have been alleged to show some relationship, albeit a subtle one, in some seasons/epochs.
 Specifically, we will explore:</p>
 <ul class="simple">
@@ -1263,85 +1263,79 @@ Name: SOI [mb], Length: 828, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:   0%|                                                                  | 0/200 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:   0%|                                                                | 0/200 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:  59%|███████████████████████████████▊                      | 118/200 [00:00&lt;00:00, 1179.92it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:  76%|███████████████████████████████████████▌            | 152/200 [00:00&lt;00:00, 1518.65it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs: 100%|██████████████████████████████████████████████████████| 200/200 [00:00&lt;00:00, 1223.20it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs: 100%|████████████████████████████████████████████████████| 200/200 [00:00&lt;00:00, 1521.79it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pearsonr(NAO,SOI)=0.001, p=0.990
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:   0%|                                                                  | 0/200 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:  92%|█████████████████████████████████████████████████▍    | 183/200 [00:00&lt;00:00, 1825.38it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs: 100%|██████████████████████████████████████████████████████| 200/200 [00:00&lt;00:00, 1784.79it/s]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pearsonr(NAO,SOI)=0.001, p=0.980
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>spearmanr(NAO,SOI)=-0.002, p=0.965
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:   0%|                                                                | 0/200 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:   0%|                                                                  | 0/200 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:  64%|██████████████████████████████████▌                   | 128/200 [00:00&lt;00:00, 1272.01it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs: 100%|██████████████████████████████████████████████████████| 200/200 [00:00&lt;00:00, 1222.65it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs: 100%|████████████████████████████████████████████████████| 200/200 [00:00&lt;00:00, 2161.72it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pointbiserialr(NAO,SOI)=0.001, p=0.975
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>spearmanr(NAO,SOI)=-0.002, p=0.985
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:   0%|                                                                  | 0/200 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:   0%|                                                                | 0/200 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs: 100%|██████████████████████████████████████████████████████| 200/200 [00:00&lt;00:00, 2056.62it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:  78%|████████████████████████████████████████▊           | 157/200 [00:00&lt;00:00, 1567.15it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs: 100%|████████████████████████████████████████████████████| 200/200 [00:00&lt;00:00, 1559.10it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>kendalltau(NAO,SOI)=-0.001, p=0.980
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pointbiserialr(NAO,SOI)=0.001, p=0.980
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:   0%|                                                                  | 0/200 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:   0%|                                                                | 0/200 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:  18%|██████████▎                                             | 37/200 [00:00&lt;00:00, 366.03it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs: 100%|████████████████████████████████████████████████████| 200/200 [00:00&lt;00:00, 2401.65it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:  37%|████████████████████▋                                   | 74/200 [00:00&lt;00:00, 365.55it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:  56%|██████████████████████████████▌                        | 111/200 [00:00&lt;00:00, 357.66it/s]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>kendalltau(NAO,SOI)=-0.001, p=0.975
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:  74%|████████████████████████████████████████▋              | 148/200 [00:00&lt;00:00, 359.71it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:   0%|                                                                | 0/200 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:  92%|██████████████████████████████████████████████████▉    | 185/200 [00:00&lt;00:00, 362.51it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:  22%|███████████▉                                          | 44/200 [00:00&lt;00:00, 439.32it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs: 100%|███████████████████████████████████████████████████████| 200/200 [00:00&lt;00:00, 361.96it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:  44%|███████████████████████▊                              | 88/200 [00:00&lt;00:00, 438.21it/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>weightedtau(NAO,SOI)=-0.035, p=0.650
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:  66%|██████████████████████████████████▉                  | 132/200 [00:00&lt;00:00, 434.41it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:  88%|██████████████████████████████████████████████▋      | 176/200 [00:00&lt;00:00, 432.74it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs: 100%|█████████████████████████████████████████████████████| 200/200 [00:00&lt;00:00, 433.43it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>weightedtau(NAO,SOI)=-0.035, p=0.705
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1678,7 +1672,7 @@ Scale = 2, using ttest method
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">PyRATES: Signal Processing</p>
+        <p class="prev-next-title">Chapter 2: Signal Processing</p>
       </div>
     </a>
     <a class="right-next"
@@ -1686,7 +1680,7 @@ Scale = 2, using ttest method
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">PyRATES: Spectral Analysis</p>
+        <p class="prev-next-title">Chapter 4: Spectral Analysis</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

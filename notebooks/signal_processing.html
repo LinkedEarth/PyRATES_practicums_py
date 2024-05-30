@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PyRATES: Signal Processing &#8212; PyRATES practicums with Python</title>
+    <title>Chapter 2: Signal Processing &#8212; PyRATES practicums with Python</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/signal_processing';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="PyRATES: Measures of association" href="Association.html" />
-    <link rel="prev" title="PyRATES: Introduction to Timeseries" href="Intro_Mauna_Loa.html" />
+    <link rel="next" title="Chapter 3: Measures of association" href="Association.html" />
+    <link rel="prev" title="Chapter 1: Introduction to Timeseries" href="Intro_Mauna_Loa.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,16 +175,16 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    PyRATES practicums
+                    PyRATES: Python and R Analysis of Time Series
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Intro_Mauna_Loa.html">PyRATES: Introduction to Timeseries</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">PyRATES: Signal Processing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Association.html">PyRATES: Measures of association</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Spectral_Analysis_Rio_Grande.html">PyRATES: Spectral Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="wavelets%26coherence.html">PyRATES: Wavelets and Coherency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Intro_Mauna_Loa.html">Chapter 1: Introduction to Timeseries</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 2: Signal Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Association.html">Chapter 3: Measures of association</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Spectral_Analysis_Rio_Grande.html">Chapter 4: Spectral Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wavelets%26coherence.html">Chapter 5: Wavelets and Coherency</a></li>
 </ul>
 
     </div>
@@ -401,7 +401,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>PyRATES: Signal Processing</h1>
+    <h1>Chapter 2: Signal Processing</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -445,8 +445,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <img src='http://linked.earth/FROGS/images/Pyrateslogo.jpg' width="400"><section class="tex2jax_ignore mathjax_ignore" id="pyrates-signal-processing">
-<h1>PyRATES: Signal Processing<a class="headerlink" href="#pyrates-signal-processing" title="Link to this heading">#</a></h1>
+  <img src='http://linked.earth/FROGS/images/Pyrateslogo.jpg' width="400"><section class="tex2jax_ignore mathjax_ignore" id="chapter-2-signal-processing">
+<h1>Chapter 2: Signal Processing<a class="headerlink" href="#chapter-2-signal-processing" title="Link to this heading">#</a></h1>
 <p>by <a class="reference external" href="https://orcid.org/0000-0001-5920-4751">Julien Emile-Geay</a>, University of Southern California</p>
 <section id="preamble">
 <h2>Preamble<a class="headerlink" href="#preamble" title="Link to this heading">#</a></h2>
@@ -502,7 +502,7 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:1: SyntaxWarning: invalid escape sequence &#39;\s&#39;
 &lt;&gt;:1: SyntaxWarning: invalid escape sequence &#39;\s&#39;
-/var/folders/bf/_x19bm694857h_hrw44j0p7w0000gn/T/ipykernel_76715/265003603.py:1: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+/var/folders/bf/_x19bm694857h_hrw44j0p7w0000gn/T/ipykernel_97317/265003603.py:1: SyntaxWarning: invalid escape sequence &#39;\s&#39;
   df = pd.read_csv(&#39;../data/hawaii.e.dat&#39;,sep=&#39;\s+&#39;,names=[&#39;time&#39;,&#39;ground_motion&#39;])
 </pre></div>
 </div>
@@ -908,7 +908,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">PyRATES: Introduction to Timeseries</p>
+        <p class="prev-next-title">Chapter 1: Introduction to Timeseries</p>
       </div>
     </a>
     <a class="right-next"
@@ -916,7 +916,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">PyRATES: Measures of association</p>
+        <p class="prev-next-title">Chapter 3: Measures of association</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

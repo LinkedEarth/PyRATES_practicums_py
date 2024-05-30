@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PyRATES: Introduction to Timeseries &#8212; PyRATES practicums with Python</title>
+    <title>Chapter 1: Introduction to Timeseries &#8212; PyRATES practicums with Python</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -63,7 +63,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="PyRATES: Signal Processing" href="signal_processing.html" />
-    <link rel="prev" title="PyRATES practicums" href="../intro.html" />
+    <link rel="prev" title="PyRATES: Python and R Analysis of Time Series" href="../intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,16 +175,16 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    PyRATES practicums
+                    PyRATES: Python and R Analysis of Time Series
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">PyRATES: Introduction to Timeseries</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 1: Introduction to Timeseries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="signal_processing.html">PyRATES: Signal Processing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Association.html">PyRATES: Measures of association</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Association.html">Chapter 2: Measures of association</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Spectral_Analysis_Rio_Grande.html">PyRATES: Spectral Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="wavelets%26coherence.html">PyRATES: Wavelets and Coherency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wavelets%26coherence.html">Chapter 5: Wavelets and Coherency</a></li>
 </ul>
 
     </div>
@@ -401,7 +401,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>PyRATES: Introduction to Timeseries</h1>
+    <h1>Chapter 1: Introduction to Timeseries</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -440,13 +440,17 @@ document.write(`
                 <article class="bd-article">
                   
   <img src='http://linked.earth/FROGS/images/Pyrateslogo.jpg' width="400">
-<section class="tex2jax_ignore mathjax_ignore" id="pyrates-introduction-to-timeseries">
-<h1>PyRATES: Introduction to Timeseries<a class="headerlink" href="#pyrates-introduction-to-timeseries" title="Link to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="chapter-1-introduction-to-timeseries">
+<h1>Chapter 1: Introduction to Timeseries<a class="headerlink" href="#chapter-1-introduction-to-timeseries" title="Link to this heading">#</a></h1>
 <p>Content: Data Wrangling, Trend estimation</p>
 <section id="background">
 <h2>Background<a class="headerlink" href="#background" title="Link to this heading">#</a></h2>
-<p>(excerpt from book, Chap 7 here)</p>
-<p>To see these concepts in action, let us consider the <a class="reference external" href="https://www.acs.org/education/whatischemistry/landmarks/keeling-curve.html">iconic</a> Mauna Loa Observatory <span class="math notranslate nohighlight">\(CO_2\)</span> measurements. The data are available <a class="reference external" href="https://scrippsco2.ucsd.edu/data/atmospheric_co2/mlo.html">here</a>. In addition to the usual scientific Python stack, we will be using <a class="reference external" href="https://pandas.pydata.org/">pandas</a> and <a class="reference external" href="http://www.statsmodels.org/stable/index.html">statsmodels</a>. Let us load these packages:</p>
+<p>Recall that a timeseries <span class="math notranslate nohighlight">\(X(t)\)</span> is an ordered data sequence, either continuous or discrete. On a computer, everything is discretized, so regardless of the original process, what we have is a discrete sequence <span class="math notranslate nohighlight">\(X_1, \cdots, X_n\)</span>, with each <span class="math notranslate nohighlight">\(X_i\)</span> corresponding to times <span class="math notranslate nohighlight">\(t_i\)</span> in <span class="math notranslate nohighlight">\(t_1, \cdots, t_n\)</span>.</p>
+<p>In timeseries analysis, it is common to consider <span class="math notranslate nohighlight">\(X(t)\)</span> as the sum of one or more oscillatory, stationary components (or ``signals’’); a <strong>trend</strong> <span class="math notranslate nohighlight">\(q(t)\)</span>, and <strong>noise</strong> <span class="math notranslate nohighlight">\(\varepsilon_t\)</span>.  The oscillatory components are often the reason we’re doing the analysis in the first place – it will tell us how big they are and what their frequency is.</p>
+<p>Whether or not those oscillatory components are present, a <strong>trend</strong> is often present as well.
+In today’s world the word “trend” is so overused that it has lost all meaning. Here, it will refer to a <strong>slowly-evolving, non-stationary component that dominates the behavior of the timeseries</strong>. For instance: a linear increase or decrease; a sinusoidal component so slow that its period is not resolved by the dataset; a nonlinear trend like the exponential increase of the Keeling curve (see below).</p>
+<p>As for <strong>noise</strong>, it clearly involves a subjective definition. Under this name we usually subsume any variable component in which we are not interested. Some of this noise may be composed of actual measurement errors (what you would think of as noise, strictly speaking), but some of it could be what another analyst would call “signal””. If you study climate, daily fluctuations are noise; if you study weather, they are your signal.  One commonly says that <em>one analyst’s signal is another analyst’s noise</em>.  This noise is often modeled as a Normal random process with zero mean, <span class="math notranslate nohighlight">\(\varepsilon \sim \mathcal{N}(0,\sigma^2)\)</span> (aka “Gaussian white noise”) .</p>
+<p>To see these concepts in action, let us consider the <a class="reference external" href="https://www.acs.org/education/whatischemistry/landmarks/keeling-curve.html">iconic Keeling curve</a> from the Mauna Loa Observatory <span class="math notranslate nohighlight">\(CO_2\)</span> measurements. The data are available <a class="reference external" href="https://scrippsco2.ucsd.edu/data/atmospheric_co2/mlo.html">here</a>. In addition to the usual scientific Python stack, we will be using <a class="reference external" href="https://pandas.pydata.org/">pandas</a> and <a class="reference external" href="http://www.statsmodels.org/stable/index.html">statsmodels</a>. Let us load these packages:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
@@ -477,9 +481,9 @@ Let’s try it:</p>
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/in_situ_co2/monthly/monthly_in_situ_co2_mlo.csv&#39;</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> <span class="c1"># this will show the first few rows of the dataset</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 
-<span class="nn">File ~/opt/miniconda3/envs/jbook/lib/python3.12/site-packages/pandas/io/parsers/readers.py:948,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
+<span class="nn">File ~/opt/miniconda3/envs/pyleo/lib/python3.11/site-packages/pandas/io/parsers/readers.py:948,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
 <span class="g g-Whitespace">    </span><span class="mi">935</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
 <span class="g g-Whitespace">    </span><span class="mi">936</span>     <span class="n">dialect</span><span class="p">,</span>
 <span class="g g-Whitespace">    </span><span class="mi">937</span>     <span class="n">delimiter</span><span class="p">,</span>
@@ -489,12 +493,12 @@ Let’s try it:</p>
 <span class="g g-Whitespace">    </span><span class="mi">946</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
 <span class="ne">--&gt; </span><span class="mi">948</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
 
-<span class="nn">File ~/opt/miniconda3/envs/jbook/lib/python3.12/site-packages/pandas/io/parsers/readers.py:617,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="nn">File ~/opt/miniconda3/envs/pyleo/lib/python3.11/site-packages/pandas/io/parsers/readers.py:617,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
 <span class="g g-Whitespace">    </span><span class="mi">614</span>     <span class="k">return</span> <span class="n">parser</span>
 <span class="g g-Whitespace">    </span><span class="mi">616</span> <span class="k">with</span> <span class="n">parser</span><span class="p">:</span>
 <span class="ne">--&gt; </span><span class="mi">617</span>     <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">nrows</span><span class="p">)</span>
 
-<span class="nn">File ~/opt/miniconda3/envs/jbook/lib/python3.12/site-packages/pandas/io/parsers/readers.py:1748,</span> in <span class="ni">TextFileReader.read</span><span class="nt">(self, nrows)</span>
+<span class="nn">File ~/opt/miniconda3/envs/pyleo/lib/python3.11/site-packages/pandas/io/parsers/readers.py:1748,</span> in <span class="ni">TextFileReader.read</span><span class="nt">(self, nrows)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1741</span> <span class="n">nrows</span> <span class="o">=</span> <span class="n">validate_integer</span><span class="p">(</span><span class="s2">&quot;nrows&quot;</span><span class="p">,</span> <span class="n">nrows</span><span class="p">)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1742</span> <span class="k">try</span><span class="p">:</span>
 <span class="g g-Whitespace">   </span><span class="mi">1743</span>     <span class="c1"># error: &quot;ParserBase&quot; has no attribute &quot;read&quot;</span>
@@ -508,7 +512,7 @@ Let’s try it:</p>
 <span class="g g-Whitespace">   </span><span class="mi">1751</span> <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
 <span class="g g-Whitespace">   </span><span class="mi">1752</span>     <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-<span class="nn">File ~/opt/miniconda3/envs/jbook/lib/python3.12/site-packages/pandas/io/parsers/c_parser_wrapper.py:234,</span> in <span class="ni">CParserWrapper.read</span><span class="nt">(self, nrows)</span>
+<span class="nn">File ~/opt/miniconda3/envs/pyleo/lib/python3.11/site-packages/pandas/io/parsers/c_parser_wrapper.py:234,</span> in <span class="ni">CParserWrapper.read</span><span class="nt">(self, nrows)</span>
 <span class="g g-Whitespace">    </span><span class="mi">232</span> <span class="k">try</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">233</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">low_memory</span><span class="p">:</span>
 <span class="ne">--&gt; </span><span class="mi">234</span>         <span class="n">chunks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reader</span><span class="o">.</span><span class="n">read_low_memory</span><span class="p">(</span><span class="n">nrows</span><span class="p">)</span>
@@ -1245,16 +1249,16 @@ strong multicollinearity or other numerical problems.
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "pyleo"
         },
         kernelOptions: {
-            name: "python3",
+            name: "pyleo",
             path: "./notebooks"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'pyleo'</script>
 
                 </article>
               
@@ -1272,7 +1276,7 @@ strong multicollinearity or other numerical problems.
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">PyRATES practicums</p>
+        <p class="prev-next-title">PyRATES: Python and R Analysis of Time Series</p>
       </div>
     </a>
     <a class="right-next"
