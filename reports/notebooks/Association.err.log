@@ -29,12 +29,12 @@ Cell [0;32mIn[17], line 1[0m
 [0;32m----> 1[0m corr_md_dof[38;5;241m=[39mms_md[38;5;241m.[39mseries_list[[38;5;241m0[39m][38;5;241m.[39mcorrelation(ms_md[38;5;241m.[39mseries_list[[38;5;241m1[39m],method[38;5;241m=[39m[38;5;124m'[39m[38;5;124mttest[39m[38;5;124m'[39m)
 [1;32m      2[0m [38;5;28mprint[39m(corr_md_dof)
 
-File [0;32m~/Documents/GitHub/Pyleoclim_util/pyleoclim/core/series.py:3552[0m, in [0;36mSeries.correlation[0;34m(self, target_series, alpha, statistic, method, number, timespan, settings, seed, common_time_kwargs, mute_pbar)[0m
-[1;32m   3550[0m [38;5;28;01mif[39;00m method [38;5;241m==[39m [38;5;124m'[39m[38;5;124mttest[39m[38;5;124m'[39m:
-[1;32m   3551[0m     [38;5;28;01mif[39;00m statistic [38;5;241m==[39m [38;5;124m'[39m[38;5;124mpearsonr[39m[38;5;124m'[39m:
-[0;32m-> 3552[0m         stat, signf, pval [38;5;241m=[39m corrutils[38;5;241m.[39mcorr_ttest(ts0[38;5;241m.[39mvalue, ts1[38;5;241m.[39mvalue, alpha[38;5;241m=[39malpha)
-[1;32m   3553[0m         signif [38;5;241m=[39m [38;5;28mbool[39m(signf)
-[1;32m   3554[0m     [38;5;28;01melse[39;00m:
+File [0;32m~/Documents/GitHub/Pyleoclim_util/pyleoclim/core/series.py:3556[0m, in [0;36mSeries.correlation[0;34m(self, target_series, alpha, statistic, method, number, timespan, settings, seed, common_time_kwargs, mute_pbar)[0m
+[1;32m   3554[0m [38;5;28;01mif[39;00m method [38;5;241m==[39m [38;5;124m'[39m[38;5;124mttest[39m[38;5;124m'[39m:
+[1;32m   3555[0m     [38;5;28;01mif[39;00m statistic [38;5;241m==[39m [38;5;124m'[39m[38;5;124mpearsonr[39m[38;5;124m'[39m:
+[0;32m-> 3556[0m         stat, signf, pval [38;5;241m=[39m corrutils[38;5;241m.[39mcorr_ttest(ts0[38;5;241m.[39mvalue, ts1[38;5;241m.[39mvalue, alpha[38;5;241m=[39malpha)
+[1;32m   3557[0m         signif [38;5;241m=[39m [38;5;28mbool[39m(signf)
+[1;32m   3558[0m     [38;5;28;01melse[39;00m:
 
 File [0;32m~/Documents/GitHub/Pyleoclim_util/pyleoclim/utils/correlation.py:234[0m, in [0;36mcorr_ttest[0;34m(y1, y2, alpha)[0m
 [1;32m    231[0m Ney2 [38;5;241m=[39m N [38;5;241m*[39m ([38;5;241m1[39m[38;5;241m-[39mg2) [38;5;241m/[39m ([38;5;241m1[39m[38;5;241m+[39mg2)

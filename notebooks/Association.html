@@ -431,6 +431,7 @@ document.write(`
   <img src='http://linked.earth/FROGS/images/Pyrateslogo.jpg' width="400">
 <section class="tex2jax_ignore mathjax_ignore" id="chapter-3-measures-of-association">
 <h1>Chapter 3: Measures of association<a class="headerlink" href="#chapter-3-measures-of-association" title="Link to this heading">#</a></h1>
+<p>by <a class="reference external" href="https://orcid.org/0000-0001-5920-4751">Julien Emile-Geay</a> &amp; <a class="reference external" href="https://orcid.org/0000-0001-9772-7617">Jordan Landers</a>, University of Southern California</p>
 <p>In this notebook we explore the relationship between two well-known climate indices, the Southern Oscillation Index (SOI) and the North Atlantic Oscillation (NAO) index.  The NAO and SOI index have been alleged to show some relationship, albeit a subtle one, in some seasons/epochs.
 Specifically, we will explore:</p>
 <ul class="simple">
@@ -1266,10 +1267,10 @@ Name: SOI [mb], Length: 828, dtype: float64
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:   0%|                                                                | 0/200 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:  76%|███████████████████████████████████████▌            | 152/200 [00:00&lt;00:00, 1518.65it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:  78%|████████████████████████████████████████▌           | 156/200 [00:00&lt;00:00, 1551.08it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs: 100%|████████████████████████████████████████████████████| 200/200 [00:00&lt;00:00, 1521.79it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs: 100%|████████████████████████████████████████████████████| 200/200 [00:00&lt;00:00, 1549.06it/s]
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pearsonr(NAO,SOI)=0.001, p=0.980
@@ -1281,61 +1282,61 @@ Name: SOI [mb], Length: 828, dtype: float64
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:   0%|                                                                | 0/200 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs: 100%|████████████████████████████████████████████████████| 200/200 [00:00&lt;00:00, 2161.72it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs: 100%|████████████████████████████████████████████████████| 200/200 [00:00&lt;00:00, 2188.33it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>spearmanr(NAO,SOI)=-0.002, p=0.985
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>spearmanr(NAO,SOI)=-0.002, p=0.965
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:   0%|                                                                | 0/200 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:  78%|████████████████████████████████████████▊           | 157/200 [00:00&lt;00:00, 1567.15it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:  81%|██████████████████████████████████████████          | 162/200 [00:00&lt;00:00, 1616.32it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs: 100%|████████████████████████████████████████████████████| 200/200 [00:00&lt;00:00, 1559.10it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs: 100%|████████████████████████████████████████████████████| 200/200 [00:00&lt;00:00, 1595.42it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pointbiserialr(NAO,SOI)=0.001, p=0.980
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pointbiserialr(NAO,SOI)=0.001, p=0.975
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:   0%|                                                                | 0/200 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs: 100%|████████████████████████████████████████████████████| 200/200 [00:00&lt;00:00, 2401.65it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs: 100%|████████████████████████████████████████████████████| 200/200 [00:00&lt;00:00, 2572.95it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>kendalltau(NAO,SOI)=-0.001, p=0.975
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>kendalltau(NAO,SOI)=-0.001, p=0.980
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:   0%|                                                                | 0/200 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:  22%|███████████▉                                          | 44/200 [00:00&lt;00:00, 439.32it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:  22%|████████████▏                                         | 45/200 [00:00&lt;00:00, 447.87it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:  44%|███████████████████████▊                              | 88/200 [00:00&lt;00:00, 438.21it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:  46%|████████████████████████▌                             | 91/200 [00:00&lt;00:00, 454.93it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:  66%|██████████████████████████████████▉                  | 132/200 [00:00&lt;00:00, 434.41it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:  68%|████████████████████████████████████▎                | 137/200 [00:00&lt;00:00, 454.62it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:  88%|██████████████████████████████████████████████▋      | 176/200 [00:00&lt;00:00, 432.74it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs:  92%|████████████████████████████████████████████████▊    | 184/200 [00:00&lt;00:00, 457.71it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs: 100%|█████████████████████████████████████████████████████| 200/200 [00:00&lt;00:00, 433.43it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating association on surrogate pairs: 100%|█████████████████████████████████████████████████████| 200/200 [00:00&lt;00:00, 455.56it/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>weightedtau(NAO,SOI)=-0.035, p=0.705
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>weightedtau(NAO,SOI)=-0.035, p=0.710
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1400,12 +1401,12 @@ First, let’s use a common analytical approximation to adjust for the loss of d
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">corr_md_dof</span><span class="o">=</span><span class="n">ms_md</span><span class="o">.</span><span class="n">series_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">correlation</span><span class="p">(</span><span class="n">ms_md</span><span class="o">.</span><span class="n">series_list</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ttest&#39;</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="nb">print</span><span class="p">(</span><span class="n">corr_md_dof</span><span class="p">)</span>
 
-<span class="nn">File ~/Documents/GitHub/Pyleoclim_util/pyleoclim/core/series.py:3552,</span> in <span class="ni">Series.correlation</span><span class="nt">(self, target_series, alpha, statistic, method, number, timespan, settings, seed, common_time_kwargs, mute_pbar)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3550</span> <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;ttest&#39;</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">3551</span>     <span class="k">if</span> <span class="n">statistic</span> <span class="o">==</span> <span class="s1">&#39;pearsonr&#39;</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">3552</span>         <span class="n">stat</span><span class="p">,</span> <span class="n">signf</span><span class="p">,</span> <span class="n">pval</span> <span class="o">=</span> <span class="n">corrutils</span><span class="o">.</span><span class="n">corr_ttest</span><span class="p">(</span><span class="n">ts0</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">ts1</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3553</span>         <span class="n">signif</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">signf</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3554</span>     <span class="k">else</span><span class="p">:</span>
+<span class="nn">File ~/Documents/GitHub/Pyleoclim_util/pyleoclim/core/series.py:3556,</span> in <span class="ni">Series.correlation</span><span class="nt">(self, target_series, alpha, statistic, method, number, timespan, settings, seed, common_time_kwargs, mute_pbar)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3554</span> <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;ttest&#39;</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3555</span>     <span class="k">if</span> <span class="n">statistic</span> <span class="o">==</span> <span class="s1">&#39;pearsonr&#39;</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">3556</span>         <span class="n">stat</span><span class="p">,</span> <span class="n">signf</span><span class="p">,</span> <span class="n">pval</span> <span class="o">=</span> <span class="n">corrutils</span><span class="o">.</span><span class="n">corr_ttest</span><span class="p">(</span><span class="n">ts0</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">ts1</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3557</span>         <span class="n">signif</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">signf</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3558</span>     <span class="k">else</span><span class="p">:</span>
 
 <span class="nn">File ~/Documents/GitHub/Pyleoclim_util/pyleoclim/utils/correlation.py:234,</span> in <span class="ni">corr_ttest</span><span class="nt">(y1, y2, alpha)</span>
 <span class="g g-Whitespace">    </span><span class="mi">231</span> <span class="n">Ney2</span> <span class="o">=</span> <span class="n">N</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">g2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">g2</span><span class="p">)</span>
