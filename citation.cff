@@ -1,0 +1,10 @@
+cff-version: 0.0.1.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: "Emile-Geay"
+    given-names: "Julien"
+    orcid: "https://orcid.org/0000-0001-5920-4751"
+title: "Time Series in Python - Practicum"
+version: v0.0.1
+date-released: 2025-02-4
+url: "https://github.com/LinkedEarth/PyRATES_practicums_py"
